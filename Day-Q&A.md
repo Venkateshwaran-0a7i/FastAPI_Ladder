@@ -1,4 +1,4 @@
-Day 1
+**============== Day 1 ============**
 
 1. What is FastAPI?
     It is python framework which is used for building API
