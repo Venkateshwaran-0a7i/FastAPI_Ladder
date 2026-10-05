@@ -29,3 +29,7 @@ def about():
 @app.get("/users/{user_id}")
 def get_user(user_id: int):
     return {"user": user_id}
+
+@app.get("/products")
+def get_products(category:str="all"):
+    return {"category": category}

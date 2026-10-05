@@ -27,3 +27,254 @@ http://127.0.0.1:8000/
 
 it open the browser and show nothing but when i change or add the end point with the url the massege for the url will appear for example http://127.0.0.1:8000/about -> the responce will be {"name": "Venkat",
             "role":"AI Engineer"}
+
+
+6. @app.get("/products")
+def products(category: str):
+    return {"category": category}
+
+What do you think happens for these three requests?
+
+A
+/products?category=milk
+    {"category":"milk"}
+
+B
+/products?category=juice
+    {"category":"juice"}
+C
+/products
+    errors 404
+
+
+**Day 1 Final questions**
+
+Absolutely. 😎 Here's your **Day 1 Final Challenge**.
+
+Don't search for the answer. Use what you've learned.
+
+# 🧪 FastAPI Day 1 Final Challenge
+
+Imagine this is your `main.py`:
+
+```python
+from fastapi import FastAPI
+
+app = FastAPI()
+
+
+@app.get("/")
+def home():
+    return {"message": "Welcome"}
+
+
+@app.get("/products/{product_id}")
+def get_product(product_id: int):
+    return {"product_id": product_id}
+
+
+@app.get("/products")
+def get_products(category: str = "all"):
+    return {"category": category}
+```
+
+## Part 1 — Predict the response
+
+For each request, tell me:
+
+**1.**
+
+```text
+GET /
+```
+
+What response? - {"message": "Welcome"}
+
+---
+
+**2.**
+
+```text
+GET /products/25
+```
+
+What response? - {"product_id": 25}
+
+---
+
+**3.**
+
+```text
+GET /products/abc
+```
+
+What happens? - 422 invalid error
+
+---
+
+**4.**
+
+```text
+GET /products
+```
+
+What response? - {"category":"all"} --
+
+__Remember__
+
+ /products
+    ↓
+Route exists
+    ↓
+category not provided
+    ↓
+default = "all"
+    ↓
+{"category": "all"}
+
+**5.**
+
+```text
+GET /products?category=milk
+```
+
+What response? {"category": "milk"}
+
+---
+
+**6.**
+
+```text
+GET /unknown
+```
+
+What happens? - 404
+
+---
+
+# Part 2 — Explain the flow
+
+For this request:
+
+```text
+GET /products/42
+```
+
+Explain the complete flow in your own words. 
+
+Something like:
+
+```text
+Browser
+   ↓
+Requesting /product/25
+   ↓
+validate
+   ↓
+Return the product as reponce if the validation pass or else the validation failed 422
+```
+
+I want you to explain **what FastAPI does**, not just give the final response.
+
+---
+
+# Part 3 — Write your own endpoint
+
+Create an endpoint for a user:
+
+```text
+GET /users/10
+```
+
+It should return:
+
+```json
+{
+    "user_id": 10
+}
+```
+
+Write the FastAPI code yourself.
+
+@app.get("/users/{user_id}")
+def user(user_id:int):
+    return {"user_id":user_id}
+
+---
+
+# Part 4 — One conceptual question 🧠
+
+Explain the difference between:
+
+```text
+/products/10
+```
+
+and
+
+```text
+/products?category=milk
+```
+
+In your own words.
+
+The products/25 is the path and used to get the specific product detials but the query is different the ? is an seperator which seperate the path and query. the query is used to filter the products in category i want all products have milk 
+---
+
+### Your answer format
+
+Reply like this:
+
+````text
+1. ...
+2. ...
+3. ...
+4. ...
+5. ...
+6. ...
+
+Flow:
+...
+
+Part 3:
+```python
+...
+````
+
+Part 4:
+...
+
+```
+
+Take your time. **Don't worry about making mistakes.** I'm checking your understanding, not looking for perfect wording.
+
+If you pass this, I'll check your **FastAPI_Ladder** repo one more time and we'll officially close **Day 1**. 🚀
+```
+
+**Part 1**
+1. {"message": "Welcome"}
+2. {"product_id": 25}
+3. 422 invalid error
+4. {"category":"all"}
+5. {"category": "milk"}
+6. 404
+
+**Part -2**
+
+Browser
+   ↓
+Requesting /product/25
+   ↓
+validate
+   ↓
+Return the product as reponce if the validation pass or else the validation failed 422
+
+**Part -3**
+
+@app.get("/users/{user_id}")
+def user(user_id:int):
+    return {"user_id":user_id}
+
+**Part - 4**
+
+The products/25 is the path and used to get the specific product detials but the query is different the ? is an seperator which seperate the path and query. the query is used to filter the products in category i want all products have milk 
