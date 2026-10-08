@@ -278,3 +278,52 @@ def user(user_id:int):
 **Part - 4**
 
 The products/25 is the path and used to get the specific product detials but the query is different the ? is an seperator which seperate the path and query. the query is used to filter the products in category i want all products have milk 
+
+
+
+**================ Day- 2 ==================**
+
+@app.get("/products")
+def get_products():
+    return {"message": "Get products"}
+
+
+@app.post("/products")
+def create_product():
+    return {"message": "Create product"}
+
+What happens if:
+
+A The browser requests:
+
+GET /products - The request returns with the responce of products on DB 
+
+
+B The client sends:
+
+POST /products - Thats makes it as error if the url dosn't have the body what to create
+
+
+C The browser requests:
+
+DELETE /products - delete the product 
+
+
+
+Which HTTP method?
+    They are the methods to communicate with database and make changes in database
+
+Which path?
+    paths are the endpoints we created for the specific task or and functions
+
+Path parameter or query parameter?
+    Path parameter is used to veiw or do some opertions in DB at same time Query parameter is the additional option to filter the data we get and the ? is used for seperate the path and query
+
+Request body or not?
+    Request body is used for post and put methods along with path the body contain the values we want to create and update 
+
+Which Pydantic model?
+    we currently used basemodel the basemodel is the toolkits that gives class capabilities such as validations, typing check, passing income data
+
+What happens when the data is invalid?
+    id the data is invalid it return 422 error but we can manage the problem with try: exept(): methods
