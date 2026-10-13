@@ -70,3 +70,18 @@ def create_product(product: Product):
         message="Product created successfully",
         product=product
     )
+
+@app.put("/products/{product_id}", response_model=ResponseModel)
+def update_products(product_id: int, updated_product: Product):
+    if product_id not in products:
+        raise HTTPException(
+            status_code=404,
+            detail="Product not found"
+        )
+
+    products[product_id] = updated_product
+
+    return ResponseModel(
+        message="Product updated successfully",
+        product=updated_product
+    )
