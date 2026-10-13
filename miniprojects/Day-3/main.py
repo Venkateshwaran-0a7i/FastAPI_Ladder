@@ -6,7 +6,7 @@ class Product(BaseModel):
     name: str
     price: float
 
-class responseModel(BaseModel):
+class ResponseModel(BaseModel):
     message: str
     product: Product
 
@@ -19,8 +19,12 @@ products = {
     4: Product(id=4, name="Banana Milk", price=65)
 }
 
-@app.get("/products/{product_id}")
+@app.get(
+    "/products/{product_id}",
+    response_model=Product
+)
 def get_product(product_id: int):
+    # Keep your existing function body
     if product_id not in products:
         raise HTTPException(
             status_code=404,
@@ -29,7 +33,13 @@ def get_product(product_id: int):
 
     return products[product_id]
 
-@app.post("/products", status_code=201)
+@app.post(
+    "/products",
+    status_code=201,
+    response_model=ResponseModel
+)
 def create_product(product: Product):
+    # Keep your existing function body,
+    # but return ResponseModel(...) with the new class name
     products[product.id] = product
-    return responseModel(message="Product created successfully", product=product)
+    return ResponseModel(message="Product created successfully", product=product)
