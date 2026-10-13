@@ -1,4 +1,4 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Response
 
 from pydantic import BaseModel
 
@@ -86,12 +86,14 @@ def update_products(product_id: int, updated_product: Product):
         product=updated_product
     )
 
-@app.delete("/products/{product_id}", response_model=ResponseModel)
+@app.delete("/products/{product_id}", status_code=204)
 def delete_product(product_id: int):
     if product_id not in products:
         raise HTTPException(
             status_code=404,
             detail="Product not found"
         )
+
     del products[product_id]
-    return ResponseModel(message="Product deleted successfully", product=products.get(product_id),status_code=204)
+
+    return Response(status_code=204)
