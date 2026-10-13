@@ -6,6 +6,10 @@ class Product(BaseModel):
     name: str
     price: float
 
+class responseModel(BaseModel):
+    message: str
+    product: Product
+
 app = FastAPI()
 
 products = {
@@ -28,4 +32,4 @@ def get_product(product_id: int):
 @app.post("/products", status_code=201)
 def create_product(product: Product):
     products[product.id] = product
-    return product
+    return responseModel(message="Product created successfully", product=product)
