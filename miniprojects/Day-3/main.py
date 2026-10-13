@@ -1,4 +1,5 @@
 from fastapi import FastAPI, HTTPException
+from numpy.ma import product
 from pydantic import BaseModel
 
 class Product(BaseModel):
@@ -38,8 +39,14 @@ def get_product(product_id: int):
     status_code=201,
     response_model=ResponseModel
 )
+  
 def create_product(product: Product):
     # Keep your existing function body,
     # but return ResponseModel(...) with the new class name
+    if product.id in products:
+        raise HTTPException (
+    status_code=409,
+    detail="Product ID already exists"
+    )
     products[product.id] = product
     return ResponseModel(message="Product created successfully", product=product)

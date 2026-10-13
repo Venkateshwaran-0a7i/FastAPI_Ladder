@@ -32,6 +32,8 @@ def get_product(id: int):
             return product
     return {"message": "Product not found"}
 
+
+
 @app.post("/products")
 def create_product(product: Product):
     return {"message": "Product created successfully", "product": product}
