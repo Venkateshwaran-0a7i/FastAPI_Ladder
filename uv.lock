@@ -13,6 +13,7 @@ resolution-markers = [
 [manifest]
 members = [
     "day-3",
+    "day-4",
     "leaning",
 ]
 
@@ -566,6 +567,11 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [{ name = "fastapi", extras = ["standard"], specifier = ">=0.141.1" }]
+
+[[package]]
+name = "day-4"
+version = "0.1.0"
+source = { virtual = "miniprojects/Day-4" }
 
 [[package]]
 name = "debugpy"
