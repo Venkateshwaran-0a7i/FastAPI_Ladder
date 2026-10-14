@@ -23,7 +23,7 @@ def divide_numbers(a: int, b: int):
     try:
         result = calculator.divide(a, b)
         return {"result": result}
-    except ValueError as error:\
+    except ValueError as error:
         raise HTTPException(status_code=400, detail=str(error))
-    result = calculator.divide(a, b)
-    return {"result": result}       
+    # result = calculator.divide(a, b)
+    # return {"result": result}       
