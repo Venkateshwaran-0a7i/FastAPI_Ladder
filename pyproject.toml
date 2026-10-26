@@ -28,4 +28,5 @@ members = [
     "day-2",
     "miniprojects/Day-3",
     "miniprojects/Day-4",
+    "miniprojects/Day-5",
 ]
