@@ -11,21 +11,30 @@ def pagination(skip: int = 0, limit: int = 10):
     }
 
 
-@app.get("/products")
-def get_products(settings: dict = Depends(pagination)):
-    return settings
+# @app.get("/products")
+# def get_products(settings: dict = Depends(pagination)):
+#     return settings
 
 
 @app.get("/orders")
 def get_orders(settings: dict = Depends(pagination)):
     return settings
 
-# ================== Mini Project  ==================
+
+# ================== Mini Project ==================
 
 def common_parameters(name: str | None = None, limit: int = 10):
-    return {"name": name, "limit": limit}
+    return {
+        "name": name,
+        "limit": limit
+    }
 
 
-@app.get("/products")
-def get_products(settings: dict = Depends(common_parameters)):
+@app.get("/products/search")
+def search_products(settings: dict = Depends(common_parameters)):
+    return settings
+
+
+@app.get("/users")
+def get_users(settings: dict = Depends(common_parameters)):
     return settings
